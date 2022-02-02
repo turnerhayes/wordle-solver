@@ -1,10 +1,15 @@
 const puppeteer = require('puppeteer');
 const { promisify } = require('util');
+const arg = require('arg');
 const writeFile = promisify(require('fs').writeFile);
 const { analyzeWords } = require('./analyze_words');
 const wordList = require('./word-list.json');
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
+
+const args = arg({
+  '--show': Boolean,
+});
 
 class Solution {
   _available = new Set(ALPHABET);
@@ -232,6 +237,7 @@ async function tryWord({
 
 (async () => {
   const browser = await puppeteer.launch({
+    headless: !(args['--show']),
   });
   const pages = await browser.pages();
   const page = await (pages.length > 0 ? pages[0] : browser.newPage());

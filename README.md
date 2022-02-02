@@ -12,18 +12,6 @@ Run `npm run words`. If you want to modify the source of the word list, change t
 
 ## Seeing the browser as it runs
 
-To see the browser as it makes its attempts to solve the puzzle, disable headless mode in Puppeteer. In index.js,
-change the following:
+To see the browser as it makes its attempts to solve the puzzle, pass the argument `--show`:
 
-```js
-  const browser = await puppeteer.launch({
-  });
-```
-
-to this:
-
-```js
-  const browser = await puppeteer.launch({
-    headless: false
-  });
-```
+`npm start -- --show`
