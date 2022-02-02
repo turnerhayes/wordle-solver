@@ -278,6 +278,8 @@ async function tryWord({
       throw new Error('Unable to find a matching word');
     }
 
+    console.log(`Trying word "${word}"`);
+
     try {
       guesses++;
       win = await tryWord({
